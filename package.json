@@ -1,0 +1,16 @@
+{
+  "name": "0everything",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+       "commit": "pnpm --filter scripts commit",
+     "ai-prettier": "pnpm --filter @koisose/ai fmt",
+    "scripts-prettier": "pnpm --filter scripts fmt"  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "husky": "^8.0.3"
+  }
+}

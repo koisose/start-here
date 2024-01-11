@@ -13,48 +13,11 @@ const systemMessage = `You are a commit message generator by creating exactly on
 <body>
 ---
 
-With allowed <type> values are feat, fix, perf, docs, style, refactor, test, and build. Translate the commit <subject> and <body> to indonesian language. And here's an example of a good commit message:
+With allowed <type> values are feat, fix, perf, docs, style, refactor, test, and build. Translate the commit <subject> and <body> to indonesian language.
 
----
-😆 fix(middleware): ensure Range headers adhere more closely to RFC 2616
-Add one new dependency, use \`range-parser\` (Express dependency) to compute range. It is more well-tested in the wild.
----
-
-git diff:`;
+create commit message from this git diff:`;
 const genAI = new GoogleGenerativeAI(API_KEY);
-async function listModel() {
-  const response = await ky
-    .get(
-      "https://generativelanguage.googleapis.com/v1beta/models?key=" + API_KEY,
-    )
-    .json();
-  return response;
-}
-function deleteLastLine(text) {
-  // 1. Split the text into lines:
-  const lines = text.split("\n");
 
-  // 2. Remove the last line:
-  lines.pop(); //  Bye-bye, last line!
-
-  // 3. Join the remaining lines back into a string:
-  const modifiedText = lines.join("\n");
-  return modifiedText;
-}
-function deleteLinesFromStart(text, lastLineNumber) {
-  const lines = text.split("\n");
-
-  lines.splice(lastLineNumber, lines.length + 1); // Remove lines from the beginning (inclusive)
-
-  return lines.join("\n");
-}
-function delay(delayInMilliseconds) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(); // Resolve the Promise after the delay
-    }, delayInMilliseconds);
-  });
-}
 async function gitDiffStaged() {
   const child = spawn("git", ["diff", "--staged"]);
 
@@ -79,10 +42,7 @@ async function gitDiffStaged() {
 }
 async function run() {
   try {
-    const allModel = await listModel();
-    const geminiProTokenLimit = allModel.models[3].inputTokenLimit;
     execSync(`cd ../../ && bash add-first-untracked.sh`);
-    //    execSync(`git add -A`);
     const diffString = await gitDiffStaged();
     if (!diffString.trim()) {
       throw { status: 5001, message: "No changes to commit" };
@@ -93,15 +53,15 @@ async function run() {
     let modifiedPrompt = `${systemMessage}
         ${modifiedDiffString}
         `;
-
+// console.log(modifiedPrompt)
     const result = await model.generateContent(modifiedPrompt);
     const response = await result.response;
     const text = response.text();
     console.log(text);
-    //            execSync(`git reset`);
+    // execSync(`git reset`);
     execSync(`git add -A`);
     execSync(`printf "${text.replace(/\`/gi, "\\`")}" | git commit -F-`);
-    execSync("git push -u origin HEAD");
+    execSync("git push -u origin main");
     process.exit();
   } catch (e) {
     console.log(e.message);

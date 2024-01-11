@@ -58,7 +58,7 @@ async function run() {
     const response = await result.response;
     const text = response.text();
     console.log(text);
-    // execSync(`git reset`);
+    execSync(`export GITHUB_TOKEN=$SUPER_TOKEN`);
     execSync(`git add -A`);
     execSync(`printf "${text.replace(/\`/gi, "\\`")}" | git commit -F-`);
     execSync("git push -u origin main");

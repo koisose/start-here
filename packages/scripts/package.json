@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "commit": "node commit.mjs",
+    "commit": "export GITHUB_TOKEN=$SUPER_TOKEN && node commit.mjs",
     "fmt": "prettier --write ."
   },
   "keywords": [],

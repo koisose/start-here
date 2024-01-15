@@ -1,7 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import dotenv from "dotenv";
 import { execSync, spawn } from "child_process";
-import ky from "ky";
 
 dotenv.config();
 

@@ -7,3 +7,6 @@ all your input data will be recorded by google, for their training, the commit m
 can run the english version by using `commit-en.mjs`
 
 
+# How to use clarifai GPT-4
+
+`export CLARIFAI_API_KEY=<your CLARIFAI_API_KEY>` then run `pnpm run commit-clarifai`

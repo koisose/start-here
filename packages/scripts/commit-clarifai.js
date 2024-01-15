@@ -114,10 +114,11 @@ async function gitDiffStaged() {
       console.log(text.outputs[0].data.text.raw);
       let text2=text.outputs[0].data.text.raw.replace(/\`/gi, "\\`");
       let text3=text2.replace(/---/g, '')
+      let text4=text3.replace(/\"/gi, "\\\"")
     //   execSync(`git reset`);
     //   console.log(text3)
       execSync(`git add -A`);
-      execSync(`printf "${text3}" | git commit -F-`);
+      execSync(`printf "${text4.replace(/```/g, '')}" | git commit -F-`);
       execSync("git push -u origin main");
       process.exit();
     } catch (e) {

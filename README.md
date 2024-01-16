@@ -4,4 +4,8 @@ There's an auto-commit in [packages/scripts/commit.mjs](packages/scripts/commit.
 
 # How to Use Clarifai GPT-4
 
+### Use it to create auto commit
+
 `export CLARIFAI_API_KEY=<your CLARIFAI_API_KEY>` then run `pnpm run commit-clarifai`.
+
+## Use it to fix any grammar mistake in `README.md`

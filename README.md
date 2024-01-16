@@ -12,4 +12,6 @@ Export your Clarifai API key with `export CLARIFAI_API_KEY=<your CLARIFAI_API_KE
 
 Execute `pnpm run fix-grammar` to correct the grammar in `README.md` and create a backup named `README.md.bak` in case of errors.
 
-### Use it to 
+### Use it to Fix grammar and create commit message automatically
+
+Just run `pnpm run fix-and-commit`

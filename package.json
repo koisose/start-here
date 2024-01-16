@@ -7,7 +7,10 @@
        "commit": "pnpm --filter scripts commit",
        "commit-clarifai": "pnpm --filter scripts commit-clarifai",
      "ai-prettier": "pnpm --filter @koisose/ai fmt",
-    "scripts-prettier": "pnpm --filter scripts fmt"  },
+    "scripts-prettier": "pnpm --filter scripts fmt",
+    "fix-grammar": "pnpm --filter scripts fix-grammar",
+    "fix-and-commit": "pnpm --filter scripts fix-grammar && pnpm --filter scripts commit-clarifai" 
+   },
   "keywords": [],
   "author": "",
   "license": "ISC",

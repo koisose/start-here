@@ -7,7 +7,7 @@ const APP_ID = 'chat-completion';
 // Change these to whatever model and text URL you want to use
 const MODEL_ID = 'gpt-4-turbo';
 const MODEL_VERSION_ID = '182136408b4b4002a920fd500839f2c8';
-const htmlToMarkdown = require('html-to-markdown');
+
 const showdown  = require('showdown');
 
 const { ClarifaiStub, grpc } = require("clarifai-nodejs-grpc");
@@ -79,17 +79,8 @@ async function readFile(file) {
   }
 }
 
-const convertHtmlToMarkdown = (html) => {
-    return new Promise((resolve, reject) => {
-      htmlToMarkdown.convert(html, (err, markdown) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(markdown);
-        }
-      });
-    });
-  };
+
+
   async function run() {
     try {
       const sourceFile = '../../README.md';
@@ -98,11 +89,14 @@ await copyFile(sourceFile, backupFile);
 const source=await readFile(sourceFile);
 const converter = new showdown.Converter();
 const html = converter.makeHtml(source);
-      const grammar=await postModelOutputsPromise(`without any explanation, and just return only the html, fix the grammar, do not fix any grammatical error inside <pre></pre> of this html: ${html}`);
+
+      const grammar=await postModelOutputsPromise(`without any explanation, and just return only the markdown, fix the grammar, and then convert the html to markdown, do not fix any grammatical error inside <pre></pre> of this html: ${html}`);
       let fixedGrammar=grammar.outputs[0].data.text.raw;
-        const markdown = await convertHtmlToMarkdown(fixedGrammar.replace(/```html|```/g, ''))
+      
+
+const markdown = fixedGrammar.replace(/^\`\`\`markdown\n/, '').replace(/\n\`\`\`$/, '');
+      
        
-      console.log(markdown)
       await writeFile(markdown, sourceFile);
       process.exit();
     } catch (e) {

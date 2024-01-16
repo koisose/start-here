@@ -120,7 +120,7 @@ async function gitDiffStaged() {
     //   console.log(text3)
       execSync(`git add -A`);
       execSync(`printf "${text5}" | git commit -F-`);
-      execSync("git push -u origin main");
+      execSync("git push -u origin main --force");
       process.exit();
     } catch (e) {
       console.log(e.message);

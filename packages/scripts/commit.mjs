@@ -56,9 +56,15 @@ async function run() {
     const result = await model.generateContent(modifiedPrompt);
     const response = await result.response;
     const text = response.text();
-    console.log(text);
+    let text2=text.replace(/```/g, '');
+    let text3=text2.replace(/---/g, '')
+    let text4=text3.replace(/\"/gi, "\\\"")
+    let text5=text4.replace(/\`/gi, "\\`");
+    let text6=text5.replace(/\'/gi, "\\'");
+    console.log(text6)
+    // execSync(`git reset`);
     execSync(`git add -A`);
-    execSync(`printf "${text.replace(/\`/gi, "\\`")}" | git commit -F-`);
+    execSync(`printf "${text6}" | git commit -F-`);
     execSync("git push -u origin main");
     process.exit();
   } catch (e) {

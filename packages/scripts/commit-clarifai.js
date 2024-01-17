@@ -25,14 +25,24 @@ const systemMessage = `You are a commit message generator by creating exactly on
 ---
 <emoji> <type>(<scope>): <subject>
 <body>
+
+Terjemahan bahasa indonesia:
+
+<indonesian_translation>
 ---
 
-With allowed <type> values are feat, fix, perf, docs, style, refactor, test, and build. Translate the commit <subject> and <body> to indonesian language. And here's an example of a good commit message:
+With allowed <type> values are feat, fix, perf, docs, style, refactor, test, and build. Translate the commit to indonesian language and put it inside <indonesian_translation>. And here's an example of a good commit message:
 
 ---
-✨ feat(README): tambah instruksi penggunaan Clarifai untuk pesan commit
+📝 docs(README): Add web demo and Clarifai project.
 
-Menambahkan bagian tentang penggunaan Clarifai untuk penerjemahan pesan commit yang lebih kuat ke dalam bahasa Indonesia. Pengguna harus menempatkan \`CLARIFAI_API_KEY\` di dalam file \`.env\` dan menjalankan perintah \`pnpm run commit-clarifai\`.
+Adding links to the web demo and Clarifai project page to the documentation. Users can now access the GPT-4 Turbo demo application and view the Clarifai project through the provided links.
+
+Terjemahan bahasa indonesia:
+
+📝 docs(README): tambah demo web dan proyek Clarifai.
+
+Menambahkan tautan demo web dan halaman proyek Clarifai ke dalam dokumentasi. Pengguna kini dapat mengakses demo aplikasi GPT-4 Turbo dan melihat proyek Clarifai melalui tautan yang disediakan.
 ---
 
 create commit message from this git diff:`;
@@ -116,8 +126,8 @@ async function gitDiffStaged() {
       let text4=text3.replace(/\"/gi, "\\\"")
       let text5=text4.replace(/\`/gi, "\\`");
       console.log(text5)
-    //   execSync(`git reset`);
-    //   console.log(text3)
+      // execSync(`git reset`);
+      
       execSync(`git add -A`);
       execSync(`printf "${text5}" | git commit -F-`);
       execSync("git push -u origin main");

@@ -1,12 +1,12 @@
 # What's This?
 
-There's an auto-commit script located at [packages/scripts/commit.mjs](packages/scripts/commit.mjs). Place `GOOGLE_API_KEY=` in your `.env` file and run the auto-commit by executing `pnpm run commit`. This utilizes the Gemini Pro free version, which means Google will record all your input data for their training purposes. The commit message is in Indonesian, but you can run the English version by using `commit-en.mjs`.
+There's an auto-commit script located at [packages/scripts/commit.mjs](packages/scripts/commit.mjs). Place `GOOGLE_API_KEY=` in your `.env` file and run the auto-commit by executing `pnpm run commit`. This utilizes the Gemini Pro free version, which means Google will record all your input data for their training purposes. The commit message is translated to Indonesian below the original commit message; you can change the prompt to remove that.
 
 # How to Use Clarifai GPT-4 Turbo
 
 ### Use it to Create Auto Commit
 
-Export your Clarifai API key with `export CLARIFAI_API_KEY=<your CLARIFAI_API_KEY>` and then run `pnpm run commit-clarifai`.
+Export your Clarifai API key with `export CLARIFAI_API_KEY=<your_CLARIFAI_API_KEY>` and then run `pnpm run commit-clarifai`.
 
 ### Use it to Fix Any Grammar Mistakes in `README.md`
 

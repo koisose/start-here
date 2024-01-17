@@ -10,9 +10,23 @@ const systemMessage = `You are a commit message generator by creating exactly on
 ---
 <emoji> <type>(<scope>): <subject>
 <body>
+
+Indonesian translation:
+
+<indonesian_translation>
 ---
 
-With allowed <type> values are feat, fix, perf, docs, style, refactor, test, and build. Translate the commit <subject> and <body> to indonesian language.
+With allowed <type> values are feat, fix, perf, docs, style, refactor, test, and build. After creating commit message, translate the commit message to indonesian language and put it inside <indonesian_translation>. And here's an example of a good commit message:
+
+---
+📝 docs(README): Add web demo and Clarifai project.
+Adding links to the web demo and Clarifai project page to the documentation. Users can now access the GPT-4 Turbo demo application and view the Clarifai project through the provided links.
+
+Indonesian translation:
+
+📝 docs(README): tambah demo web dan proyek Clarifai.
+Menambahkan tautan demo web dan halaman proyek Clarifai ke dalam dokumentasi. Pengguna kini dapat mengakses demo aplikasi GPT-4 Turbo dan melihat proyek Clarifai melalui tautan yang disediakan.
+---
 
 create commit message from this git diff:`;
 const genAI = new GoogleGenerativeAI(API_KEY);

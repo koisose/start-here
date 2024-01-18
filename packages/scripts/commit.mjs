@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import dotenv from "dotenv";
 import { execSync, spawn } from "child_process";
-
+import { confirm } from '@clack/prompts';
 dotenv.config();
 
 const API_KEY = process.env.GOOGLE_API_KEY; // Replace with your actual API key
@@ -64,7 +64,7 @@ async function run() {
     let modifiedPrompt = `${systemMessage}
         ${modifiedDiffString}
         `;
-// console.log(modifiedPrompt)
+    // console.log(modifiedPrompt)
     const result = await model.generateContent(modifiedPrompt);
     const response = await result.response;
     const text = response.text();
@@ -74,10 +74,19 @@ async function run() {
     let text5=text4.replace(/\`/gi, "\\`");
     let text6=text5.replace(/\'/gi, "\\'");
     console.log(text6)
-    // execSync(`git reset`);
-    execSync(`git add -A`);
-    execSync(`printf "${text6}" | git commit -F-`);
-    execSync("git push -u origin main");
+
+
+    const shouldContinue = await confirm({
+      message: 'Do you want to push?',
+    });
+    if(shouldContinue){
+      execSync(`git add -A`);
+      execSync(`printf "${text6}" | git commit -F-`);
+      execSync("git push -u origin main");
+    }else{
+      execSync(`git reset`);
+    }
+
     process.exit();
   } catch (e) {
     console.log(e.message);

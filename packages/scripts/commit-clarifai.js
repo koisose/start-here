@@ -111,8 +111,8 @@ async function gitDiffStaged() {
   }
   async function run() {
     try {
-      // execSync(`cd ../../ && bash add-first-untracked.sh`);
-      execSync(`cd ../../ && git add .`);
+      execSync(`cd ../../ && bash add-first-untracked.sh`);
+      // execSync(`cd ../../ && git add .`);
       const diffString = await gitDiffStaged();
       if (!diffString.trim()) {
         throw { status: 5001, message: "No changes to commit" };

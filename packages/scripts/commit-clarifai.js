@@ -1,5 +1,6 @@
 
 const PAT = process.env.CLARIFAI_API_KEY;
+const { confirm } = require('@clack/prompts');
 const { execSync, spawn } = require("child_process");
 const USER_ID = 'openai';
 const APP_ID = 'chat-completion';
@@ -124,11 +125,16 @@ async function gitDiffStaged() {
       let text4=text3.replace(/\"/gi, "\\\"")
       let text5=text4.replace(/\`/gi, "\\`");
       console.log(text5)
-      // execSync(`git reset`);
-      
-      execSync(`git add -A`);
-      execSync(`printf "${text5}" | git commit -F-`);
-      execSync("git push -u origin main");
+      const shouldContinue = await confirm({
+        message: 'Do you want to push?',
+      });
+      if(shouldContinue){
+        execSync(`git add -A`);
+        execSync(`printf "${text5}" | git commit -F-`);
+        execSync("git push -u origin main");
+      }else{
+        execSync(`git reset`);
+      }
       process.exit();
     } catch (e) {
       console.log(e.message);

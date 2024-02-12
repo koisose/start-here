@@ -15,3 +15,7 @@ Execute `pnpm run fix-grammar` to correct the grammar in `README.md` and create 
 ### Use it to Fix grammar and create commit message automatically
 
 Just run `pnpm run fix-and-commit`
+
+### About the basic qwik
+
+This is can be used for making app quicker using qwik it already added library like react,og-image,tailwind

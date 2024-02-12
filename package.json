@@ -8,6 +8,7 @@
        "commit-clarifai": "pnpm --filter scripts commit-clarifai",
        "scripts-prettier": "pnpm --filter scripts fmt",
        "qwik-prettier": "pnpm --filter qwik fmt",
+       "dev": "pnpm --filter qwik dev",
     "fix-grammar": "pnpm --filter scripts fix-grammar",
     "fix-and-commit": "pnpm --filter scripts fix-grammar && pnpm --filter scripts commit-clarifai" 
    },

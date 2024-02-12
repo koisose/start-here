@@ -54,6 +54,8 @@
   },
   "dependencies": {
     "@mui/joy": "5.0.0-beta.27",
-    "og-img": "^0.2.0"
+    "og-img": "^0.2.0",
+    "optional": "^0.1.4",
+    "sharp": "^0.33.2"
   }
 }

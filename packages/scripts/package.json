@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "commit": "node commit.mjs",
     "commit-clarifai": "node commit-clarifai.js",
+    "commit-openai": "node commit-openai.mjs",
     "fix-grammar": "node fix-grammar.js",
     "fmt": "prettier --write ."
   },
@@ -19,6 +20,7 @@
     "clarifai-nodejs-grpc": "^10.0.3",
     "dotenv": "^16.3.1",
     "ky": "^1.1.3",
+    "openai": "^4.28.0",
     "prettier": "^3.0.3",
     "showdown": "^2.1.0"
   }

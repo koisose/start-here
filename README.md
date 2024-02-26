@@ -19,3 +19,10 @@ Just run `pnpm run fix-and-commit`
 ### About the basic qwik
 
 This is can be used for making app quicker using qwik it already added library like react,og-image,tailwind
+
+### Commit using openai
+OPENAI_API_KEY=
+
+```bash
+bun run commit-openai
+```

@@ -6,6 +6,7 @@
   "scripts": {
        "commit": "pnpm --filter scripts commit",
        "commit-clarifai": "pnpm --filter scripts commit-clarifai",
+       "commit-openai": "pnpm --filter scripts commit-openai",
        "scripts-prettier": "pnpm --filter scripts fmt",
        "qwik-prettier": "pnpm --filter qwik fmt",
        "dev": "pnpm --filter qwik dev",

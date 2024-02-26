@@ -1,16 +1,14 @@
 #!/bin/bash
 
-# Get the list of untracked files
-untracked_files=$(git diff --name-only)
+# Find the first changed file using git status
+first_changed_file=$(git status --porcelain | awk '{print $2}' | head -n 1)
 
-if [[ -n "$untracked_files" ]]; then
-  # Extract the first file name
-  first_untracked_file=$(echo "$untracked_files" | head -n1)
-
-  # Add the first untracked file to the staging area
-  git add "$first_untracked_file"
-
-  echo "Added $first_untracked_file to the staging area."
-else
-  echo "No untracked files found."
+# Check if a file was found
+if [ -z "$first_changed_file" ]; then
+    echo "No changed files found."
+    exit 1
 fi
+
+# Add the first changed file to staging
+git add "$first_changed_file"
+

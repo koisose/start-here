@@ -1,4 +1,4 @@
-lockfileVersion: '6.0'
+lockfileVersion: '6.1'
 
 settings:
   autoInstallPeers: true
@@ -11,8 +11,6 @@ importers:
       husky:
         specifier: ^8.0.3
         version: 8.0.3
-
-  packages/ai-shell: {}
 
   packages/basic-qwik:
     dependencies:
